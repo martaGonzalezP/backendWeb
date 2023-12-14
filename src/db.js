@@ -1,8 +1,10 @@
 import mongoose from 'mongoose' //Mongoose nos permite conectarnos a mongodb y tmb a modelar los datos
+import dotenv from 'dotenv';
+dotenv.config();
 
 export const connectDB = async () => {
     try {
-        await mongoose.connect('mongodb+srv://mgonzalezpalmero:ly71fsM7Qd6PSULU@cluster0.ms7erhg.mongodb.net/ParcialCloud')
+        await mongoose.connect(process.env.URL_BDD)
         console.log("Conexión establecida")        
     } catch (error) {
         console.log(error)
