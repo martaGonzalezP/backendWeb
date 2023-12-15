@@ -3,7 +3,6 @@
 import express from 'express'
 import morgan from 'morgan'     //Morgan nos permite ver en el terminal las peticiones hechas al backend 
 import routerEntidad from './routes/routesEntidad.js'
-import routesParada from './routes/routesParada.js'
 import cors from 'cors';
 
 const app = express()
