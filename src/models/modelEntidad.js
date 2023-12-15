@@ -1,21 +1,26 @@
 import mongoose from 'mongoose'
 
-const entitySchema = new mongoose.Schema({
-    foto: {
+const eventSchema = new mongoose.Schema({
+    nombre: {
         type: String
-        //default: "http://res.cloudinary.com/dten77l85/image/upload/v1701645989/hfxempzbqlkawdekvuxy.jpg"
     },
-    imagenes: {
-        type:[String],
-        default: []
+    timestamp: {
+        type: Date
     },
-    usuario: {
-        type: String  
-    },
-    ubicacion: {
+    lugar: {
         type: String
+    },
+    coordenadas: {
+        lat:{ type: Number },
+        lon:{ type: Number }
+    },
+    organizador: {
+        type: String
+    },
+    imagen: {
+        type: String,
+        default: "https://res.cloudinary.com/daf0kbeor/image/upload/v1702598780/cv1fjxpcg0usq3rcvw0m.jpg"
     }
-
 },{ versionKey: false });
 
-export default mongoose.model('entidades', entitySchema)
+export default mongoose.model('eventos', eventSchema)

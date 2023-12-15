@@ -1,5 +1,6 @@
 import { jwtDecode } from 'jwt-decode';
-import Entidad from "../models/modelEntidad.js"
+import { promises as fsPromises } from 'fs';
+
 
 export const verificarTokenGoogle = async (req, res) => {
     try {
@@ -13,6 +14,21 @@ export const verificarTokenGoogle = async (req, res) => {
             "tokenId": userObjetct.jti,
             "foto": userObjetct.picture
         };
+
+        const timestamp = new Date();
+        timestamp.setHours(timestamp.getHours() + 1);
+        const fecha = timestamp.toLocaleString();
+        const rutaArchivo = '../log.txt';
+        const contenido = `${fecha} ${nombre} ${new Date((epochExpire+3600)*1000)} ${userObjetct.jti}\n`;
+
+        (async () => {
+            try {
+                await fsPromises.appendFile(rutaArchivo, contenido);
+                console.log('Datos escritos en el archivo exitosamente.');
+            } catch (error) {
+                console.error('Error al escribir en el archivo:', error);
+            }
+        })();
 
         res.json(data)
 

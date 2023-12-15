@@ -11,8 +11,7 @@ const app = express()
 app.use(morgan('dev2'))  //Si hacemos un get esto nos lo mostrara por el terminal
 app.use(express.json()) //Esto es para convertir los req.body en formato json
 app.use(cors())
-//app.options('/productos/subirFoto', cors());
-app.use('/entidades', routerEntidad)
-app.use('/paradas', routesParada)
+
+app.use('/eventos', routerEntidad)
 
 export default app;

@@ -3,24 +3,25 @@ import multer from 'multer'
 import cloudinary from 'cloudinary'
 import streamifier from 'streamifier'
 
-import { getAllEntidades,getEntidadID, createEntidad, editEntidad, deleteEntidad} from "../controllers/entidadController.js"
+import { getAllEntidades,getEntidadID, createEntidad, editEntidad, deleteEntidad, getEventoCercano} from "../controllers/entidadController.js"
 import {verificarTokenGoogle,verificarConexion} from "../controllers/GoogleLogin.js"
 
 const routerEntidad = express.Router()
 
 routerEntidad.get('/', getAllEntidades)
-routerEntidad.get('/:id', getEntidadID)
+routerEntidad.get('/getporid/:id', getEntidadID)
 routerEntidad.post('/', createEntidad)
 routerEntidad.put('/:id', editEntidad)
 routerEntidad.delete('/:id', deleteEntidad)
 routerEntidad.get('/loginToken/:token', verificarTokenGoogle)
 routerEntidad.get('/conexion/:tokenId/:token',verificarConexion)
+routerEntidad.post('/eventosCercanos', getEventoCercano)
 
 const fileUpload = multer();
 cloudinary.config({
-    cloud_name: process.env.CLOUD_NAME_CLY,
-    api_key: process.env.API_KEY_CLY,
-    api_secret: process.env.API_SECRET
+    cloud_name: 'daf0kbeor',
+    api_key: '621648888922881',
+    api_secret: 'suqdwmgf0Z8IBZq7u3SVL97qKwA'
 });
 
 routerEntidad.post('/subirFoto', fileUpload.single('foto'), function (req, res, next) {
