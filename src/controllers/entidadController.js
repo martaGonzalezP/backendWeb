@@ -59,7 +59,7 @@ export const editEntidad = async (req, res) => {
         if(!updatedEntidad){
             return res.status(404).json({message : 'Entidad no encontrada' });
         }
-        res.json(updatedUser);
+        res.json(updatedEntidad);
 
     } catch (error) {
         console.log('Error en la consulta de Entidads a la base de datos:', error);
